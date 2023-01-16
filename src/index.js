@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'mobx-react'; // MobX 에서 사용하는 Provider
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import IndexStore from './stores/index';
+
+const rootStore = new IndexStore(); // *** root 스토어 생성
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider {...rootStore}>
+      {/* *** ...root 으로 스토어 모두 자동으로 설정 */}
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
